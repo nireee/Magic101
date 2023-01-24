@@ -1,3 +1,4 @@
+using OpenCvSharp.Demo;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class Paintable : MonoBehaviour
     public GameObject Brush;
     public float BrushSize = 0.1f;
     public RenderTexture RTexture;
+    public Texture2D texture2D;
 
     // Use this for initialization
     void Start()
@@ -49,14 +51,21 @@ public class Paintable : MonoBehaviour
         RenderTexture.active = RTexture;
 
         //convert rendering texture to texture2D
-        var texture2D = new Texture2D(RTexture.width, RTexture.height);
-        texture2D.ReadPixels(new Rect(0, 0, RTexture.width, RTexture.height), 0, 0);
-        texture2D.Apply();
-
+        this.texture2D = new Texture2D(RTexture.width, RTexture.height);
+        this.texture2D.ReadPixels(new Rect(0, 0, RTexture.width, RTexture.height), 0, 0);
+        this.texture2D.Apply();
+        //Invoke("test", 1);
+        test();
         //write data to file
-        var data = texture2D.EncodeToPNG();
-        File.WriteAllBytes(Application.dataPath + "/savedImage.png", data);
+        //var data = texture2D.EncodeToPNG();
+        //File.WriteAllBytes(Application.dataPath + "/savedImage.png", data);
 
+
+    }
+
+    private void test()
+    {
+        ContoursByShapeScript.Instance.check(this.texture2D);
 
     }
 }
