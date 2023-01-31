@@ -1,4 +1,4 @@
-using OpenCvSharp.Demo;
+//using OpenCvSharp.Demo;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -65,7 +65,7 @@ public class Paintable : MonoBehaviour
 
     private void test()
     {
-        ContoursByShapeScript.Instance.check(this.texture2D);
+        //ContoursByShapeScript.Instance.check(this.texture2D);
 
     }
 }
